@@ -30,9 +30,9 @@ void add(char *input1,char *input2,char *out){
     }
     int i ;
     for ( i = 0; i < length; i++){
-        int x,y,over,over2;
-        x=(input1[len1-1-i])-'0';
-        y=(input2[len2-1-i])-'0';
+        int x=0,y=0,over,over2;
+        if((len1-1-i)>=0)x=(input1[len1-1-i])-'0';
+        if((len2-1-i)>=0)y=(input2[len2-1-i])-'0';
 
         if(carry<1) out[length-i]=(char)(x+y)%10 +'0';
         else out[length-i]=(char)(x+y)%10+carry +'0'; 
