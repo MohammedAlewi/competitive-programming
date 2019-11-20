@@ -13,7 +13,7 @@ int main(){
 
     printf(" >>");
     scanf("%s",input2);
-    
+
     subtraction(input1,input2,out);
     printf("%s",out);
     return 0;
@@ -63,7 +63,7 @@ void subtraction(char *input1,char *input2,char *out){
     int i;
     int carry=0;
     for ( i = 0; i < length; i++){
-        int x=0,y=0,over,over2; //
+        int x=0,y=0,over,over2; 
         if((negative_number_index-i-1)>=0) x=(negative_number[negative_number_index-1-i])-'0';
         buffer[length-i]=(char)(9-x) +'0';             
     }
@@ -71,9 +71,7 @@ void subtraction(char *input1,char *input2,char *out){
     buffer[length+1]='\0';
     add(buffer,one,buffer);
 
-    add(buffer, positive_number,buffer);
-    buffer[strlen(buffer)-length-1]='0';
+    add(buffer, positive_number,out);
+    out[strlen(out)-length-1]='0';
 
-    strcpy(buffer,out);
-    
 }
