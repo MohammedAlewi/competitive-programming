@@ -2,8 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+void subtraction(char *input1,char *input2,char *out);
 void add(char *input1,char *input2,char *out);
+void compliment_num(char *negative_number,char *buffer,int len,int ne_len);
 void multiply(char *input1,char *input2,char *out);
+int compare(char *input1,char *input2);
+
 int main(){
     char input1[200];
     char input2[200];
@@ -15,7 +19,40 @@ int main(){
     printf(" >>");
     scanf("%s",input2);
     multiply(input1,input2,out);
+
+    printf("result : %s\n",out);
     return 0;
+}
+
+void multiply(char *input1,char *input2,char *out){
+    char index[200];
+    char out_put[200];
+    char inc[10];
+    inc[0]='1';
+    inc[1]='\0';
+    index[0]='1';
+    index[1]='\0';
+    
+    add(index,inc,index);
+    add(input2,input2,out);
+    while(compare(index,input1)==0){  
+        add(input2,out,out);
+        add(index,inc,index);
+    }
+
+}
+
+int compare(char *input1,char *input2){
+    int ans=1;
+    int len1=strlen(input1);
+    int len2=strlen(input2);
+    int length=len1>len2? len1:len2;
+    for (int i = 0; i < length; i++){
+        if (input1[len1-i]!=input2[len2-i] && ((len1-i)>=0 && (len2-i)>=0 )){
+           ans=0; 
+        }
+    }
+    return ans;
 }
 
 void add(char *input1,char *input2,char *out){
@@ -36,26 +73,45 @@ void add(char *input1,char *input2,char *out){
         if((len2-1-i)>=0)y=(input2[len2-1-i])-'0';
 
         if(carry<1) out[length-i]=(char)(x+y)%10 +'0';
-        else out[length-i]=(char)(x+y)%10+carry +'0'; 
-  
-        carry=(x+y)/10;              
+        else out[length-i]=(char)(x+y+carry)%10 +'0'; 
+
+        carry=(x+y+carry)/10;              
     }
     out[length-i]=carry+'0';
-    out[length+1]='\0';
-    
-    printf("%s\n",out);
-    
+    out[length+1]='\0'; 
 }
 
-void multiply(char *input1,char *input2,char *out){
-    char index[200];
-    char out_put[200];
-    char inc[0];
-    inc[0]='1';
-    index[0]='1';
-    index[1]='\0';
-   add(index,inc,index);
-    // while(strcmp(index,input1)==0){
+void subtraction(char *input1,char *input2,char *out){
+    char *negative_number,*positive_number;
+    
+    negative_number= input1[0]=='-'?input1:input2;
+    positive_number= input1[0]!='-'?input1:input2;
 
-    // }
+    int negative_number_index=  strlen(negative_number);
+    int length= (strlen(negative_number)-1>strlen(positive_number))?
+            strlen(negative_number)-1:strlen(positive_number);
+
+    negative_number[0]='0';
+    char buffer[200];
+    compliment_num(negative_number,buffer,length,negative_number_index);
+
+    add(buffer, positive_number,out);
+    out[strlen(out)-length-1]='0';
+}
+
+
+void compliment_num(char *negative_number,char *buffer,int len,int ne_len){
+    char one[10];
+    one[0]='1';one[1]='\0';
+
+    int i;
+    int carry=0;
+    for ( i = 0; i < len; i++){
+        int x=0,y=0,over,over2; //
+        if((ne_len-i-1)>=0) x=(negative_number[ne_len-1-i])-'0';
+        buffer[len-i]=(char)(9-x) +'0';             
+    }
+    buffer[len-i]='0';
+    buffer[len+1]='\0';
+    add(buffer,one,buffer);
 }
