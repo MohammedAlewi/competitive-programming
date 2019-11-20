@@ -14,16 +14,18 @@ int main(){
 
     printf(" >>");
     scanf("%s",input2);
+
     if(input1[0]=='-' && input2[0]=='-'){
-        input1[0],input2[0]='0','0';
+        input1[0]='0';input2[0]='0';
         add(input1,input2,out);
-        printf("-%s",out);
+        printf("-%s\n",out);
+        
     }else if(input1[0]=='-' || input2[0]=='-'){
         subtraction(input1,input2,out);
         printf("%s\n",out);
     }else{
         add(input1,input2,out);
-        printf("%s",out);
+        printf("%s\n",out);
     }
         
    
