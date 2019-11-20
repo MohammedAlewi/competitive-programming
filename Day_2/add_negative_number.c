@@ -3,6 +3,7 @@
 #include <string.h>
 void subtraction(char *input1,char *input2,char *out);
 void add(char *input1,char *input2,char *out);
+void compliment_num(char *negative_number,char *buffer,int len,int ne_len);
 int main(){
     char input1[200];
     char input2[200];
@@ -15,7 +16,7 @@ int main(){
     scanf("%s",input2);
     
     subtraction(input1,input2,out);
-    printf("%s",out);
+    printf("%s\n",out);
     return 0;
 }
 
@@ -57,23 +58,25 @@ void subtraction(char *input1,char *input2,char *out){
 
     negative_number[0]='0';
     char buffer[200];
+    compliment_num(negative_number,buffer,length,negative_number_index);
+
+    add(buffer, positive_number,out);
+    out[strlen(out)-length-1]='0';
+}
+
+
+void compliment_num(char *negative_number,char *buffer,int len,int ne_len){
     char one[10];
     one[0]='1';one[1]='\0';
 
     int i;
     int carry=0;
-    for ( i = 0; i < length; i++){
+    for ( i = 0; i < len; i++){
         int x=0,y=0,over,over2; //
-        if((negative_number_index-i-1)>=0) x=(negative_number[negative_number_index-1-i])-'0';
-        buffer[length-i]=(char)(9-x) +'0';             
+        if((ne_len-i-1)>=0) x=(negative_number[ne_len-1-i])-'0';
+        buffer[len-i]=(char)(9-x) +'0';             
     }
-    buffer[length-i]='0';
-    buffer[length+1]='\0';
+    buffer[len-i]='0';
+    buffer[len+1]='\0';
     add(buffer,one,buffer);
-
-    add(buffer, positive_number,buffer);
-    buffer[strlen(buffer)-length-1]='0';
-
-    strcpy(buffer,out);
-    
 }
