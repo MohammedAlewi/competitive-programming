@@ -13,8 +13,9 @@ int main(){
 
     printf(" >>");
     scanf("%s",input2);
-    //add(input1,input2,out);
+    
     subtraction(input1,input2,out);
+    printf("%s",out);
     return 0;
 }
 
@@ -36,54 +37,43 @@ void add(char *input1,char *input2,char *out){
         if((len2-1-i)>=0)y=(input2[len2-1-i])-'0';
 
         if(carry<1) out[length-i]=(char)(x+y)%10 +'0';
-        else out[length-i]=(char)(x+y)%10+carry +'0'; 
-  
-        carry=(x+y)/10;              
+        else out[length-i]=(char)(x+y+carry)%10 +'0'; 
+
+        carry=(x+y+carry)/10;              
     }
     out[length-i]=carry+'0';
-    out[length+1]='\0';
-    
-    printf("%s\n",out);
-    
+    out[length+1]='\0'; 
 }
 
 void subtraction(char *input1,char *input2,char *out){
-    int len1=strlen(input1);
-    int len2=strlen(input2);
-    int length= (len1>len2)?len1:len2;
-    char *negative_number;
+    char *negative_number,*positive_number;
     
     negative_number= input1[0]=='-'?input1:input2;
-    int negative_number_index= len2>len1? len1:len2;
-    
+    positive_number= input1[0]!='-'?input1:input2;
+
+    int negative_number_index=  strlen(negative_number);
+    int length= (strlen(negative_number)-1>strlen(positive_number))?
+            strlen(negative_number)-1:strlen(positive_number);
+
     negative_number[0]='0';
     char buffer[200];
+    char one[10];
+    one[0]='1';one[1]='\0';
 
     int i;
     int carry=0;
     for ( i = 0; i < length; i++){
-        int x=0,y=0,over,over2;
-        if((negative_number_index-1-i)>=0) x=(negative_number[negative_number_index-1-i])-'0';
-        if(i==0) out[length-i]=(char)(9-y+1) +'0';
-        // if((len1-1-i)>=0)x=(input1[len1-1-i])-'0';
-        // if((negative_number_index-1-i)>=0)y=(negative_number[negative_number_index-1-i])-'0';
-
-        // if(x-y-carry>0){
-        //     buffer[length-i]=(char)(x-y-carry) +'0';
-        //     carry=0;
-        // } 
-        // else {
-        //     buffer[length-i]=(char)(x+10-y-carry) +'0';
-        //     carry=1;
-        // } 
-  
-                  
+        int x=0,y=0,over,over2; //
+        if((negative_number_index-i-1)>=0) x=(negative_number[negative_number_index-1-i])-'0';
+        buffer[length-i]=(char)(9-x) +'0';             
     }
-    if(carry==1)
-        out[length-i]='-';
-    else
-        out[length-i]='0';
-    out[length-i]='\0';
-    //printf("%s\n",negative_number);
-    printf("here %s\n",buffer);
+    buffer[length-i]='0';
+    buffer[length+1]='\0';
+    add(buffer,one,buffer);
+
+    add(buffer, positive_number,buffer);
+    buffer[strlen(buffer)-length-1]='0';
+
+    strcpy(buffer,out);
+    
 }
