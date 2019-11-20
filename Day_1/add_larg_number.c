@@ -35,14 +35,14 @@ void add(char *input1,char *input2,char *out){
         if((len2-1-i)>=0)y=(input2[len2-1-i])-'0';
 
         if(carry<1) out[length-i]=(char)(x+y)%10 +'0';
-        else out[length-i]=(char)(x+y)%10+carry +'0'; 
-  
-        carry=(x+y)/10;              
+        else out[length-i]=(char)(x+y+carry)%10 +'0'; 
+        
+        carry=(x+y+carry)/10;                
     }
     out[length-i]=carry+'0';
     out[length+1]='\0';
-    int len=strlen(out);
     
     printf("%s\n",out);
     
 }
+
