@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void subtraction(char *input1,char *input2,char *out);
 void add(char *input1,char *input2,char *out);
-void compliment_num(char *negative_number,char *buffer,int len,int ne_len);
 void multiply(char *input1,char *input2,char *out);
 int compare(char *input1,char *input2);
 
@@ -39,7 +37,6 @@ void multiply(char *input1,char *input2,char *out){
         add(input2,out,out);
         add(index,inc,index);
     }
-
 }
 
 int compare(char *input1,char *input2){
@@ -79,39 +76,4 @@ void add(char *input1,char *input2,char *out){
     }
     out[length-i]=carry+'0';
     out[length+1]='\0'; 
-}
-
-void subtraction(char *input1,char *input2,char *out){
-    char *negative_number,*positive_number;
-    
-    negative_number= input1[0]=='-'?input1:input2;
-    positive_number= input1[0]!='-'?input1:input2;
-
-    int negative_number_index=  strlen(negative_number);
-    int length= (strlen(negative_number)-1>strlen(positive_number))?
-            strlen(negative_number)-1:strlen(positive_number);
-
-    negative_number[0]='0';
-    char buffer[200];
-    compliment_num(negative_number,buffer,length,negative_number_index);
-
-    add(buffer, positive_number,out);
-    out[strlen(out)-length-1]='0';
-}
-
-
-void compliment_num(char *negative_number,char *buffer,int len,int ne_len){
-    char one[10];
-    one[0]='1';one[1]='\0';
-
-    int i;
-    int carry=0;
-    for ( i = 0; i < len; i++){
-        int x=0,y=0,over,over2; //
-        if((ne_len-i-1)>=0) x=(negative_number[ne_len-1-i])-'0';
-        buffer[len-i]=(char)(9-x) +'0';             
-    }
-    buffer[len-i]='0';
-    buffer[len+1]='\0';
-    add(buffer,one,buffer);
 }
