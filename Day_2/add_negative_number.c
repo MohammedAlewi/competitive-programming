@@ -5,6 +5,7 @@ void subtraction(char *input1,char *input2,char *out);
 void add(char *input1,char *input2,char *out);
 void compliment_num(char *negative_number,char *buffer,int len,int ne_len);
 int main(){
+    char *negative_number,*positive_number,*bigger_number,*smaller_number;
     char input1[200];
     char input2[200];
     char out[200];
@@ -15,6 +16,14 @@ int main(){
     printf(" >>");
     scanf("%s",input2);
     
+    negative_number= input1[0]=='-'?input1:input2;
+    positive_number= input1[0]!='-'?input1:input2;
+
+    bigger_number=strlen(negative_number)-1>strlen(positive_number)?negative_number:positive_number;
+    smaller_number=strlen(negative_number)-1<strlen(positive_number)?negative_number:positive_number;
+    
+
+
     subtraction(input1,input2,out);
     printf("%s\n",out);
     return 0;
