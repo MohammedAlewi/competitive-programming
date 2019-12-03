@@ -25,7 +25,7 @@ def counting_sort(arr,max_num):
 
 
 def main():
-    uncount=[3,6,4,1,3,4,1,4]
+    uncount=[3,6,4,1,3,4,1,9,4]
     print( counting_sort(uncount,9))
 
 if __name__=='__main__':main()
