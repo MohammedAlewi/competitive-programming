@@ -7,6 +7,6 @@ def efficent_radomizer(max_num):
     return random_num
 
 def main():
-    print( efficent_radomizer(10000))
+    print( efficent_radomizer(100))
 
 if __name__=='__main__':main()
