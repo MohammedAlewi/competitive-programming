@@ -14,3 +14,5 @@ class Solution:
         return 0
 
 s=Solution()
+print(s.dailyTemperatures([34,23,43,45,34,12,49,22,34,21,43,121]))
+#[2, 1, 1, 3, 2, 1, 5, 1, 2, 1, 1, 0]
