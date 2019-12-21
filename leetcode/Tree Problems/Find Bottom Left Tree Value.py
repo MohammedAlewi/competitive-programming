@@ -13,10 +13,8 @@ class Solution:
     def findBottomLeftValue(self, root: TreeNode) -> int:
         self.search(root,1)
         self.dict[0]=root.val
-        x=list(self.dict.keys())
-        x.sort()
-        print(self.dict)
-        return self.dict[x.pop()]
+        x=max(list(self.dict.keys()))
+        return self.dict[x]
     
     def search(self,root,x):
         x+=1
