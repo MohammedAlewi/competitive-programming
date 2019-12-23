@@ -8,7 +8,6 @@
 class Solution:
     def __init__(self):
         self.dict={}
-        self.counter=0
         
     def findBottomLeftValue(self, root: TreeNode) -> int:
         self.search(root,1)

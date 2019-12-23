@@ -21,4 +21,4 @@ def max_val(d,ex=None):
     d[result]-=1
     return result if d[result]>-1 else ''
 
-print(reorganize("vvvlo"))
+print(reorganize("eeeeedddddbbbcccaaaa"))
