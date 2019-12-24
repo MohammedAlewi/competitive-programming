@@ -1,25 +1,27 @@
 class Solution:
-    def carFleet(self, target: int, position, speed) -> int:
-        fleets=[]
-        lenght=len(position)
-        vals=self.prepare_ds(position,speed)
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        if len(position)==0:return 0
+        fleets=1
+        vals=self.prepare_ds(position,speed,target)
         x=list(vals.keys())
         x.sort()
-        x.reverse()
+        t=[]
         for i in x:
-            val=(x[0]-i+target)/vals[i]
-            print(val)
-            if(len(fleets)==0 or val>fleets[0]): fleets.insert(0,val)
-        return len(fleets)
+            for j in vals[i]:
+                t.append(j)
+                
+        min_val=t[-1]
+        for i in range(len(t)-1,-1,-1):
+            if t[i]> min_val:
+                min_val=t[i]
+                fleets+=1
+            
+        return fleets
 
-    def prepare_ds(self,position,speed):
+    def prepare_ds(self,position,speed,target):
         d={}
         lenght=len(position)
         for i in range(lenght):
-            d[position[i]]=speed[i]
+            if d.get(position[i])==None:d[position[i]]=[]
+            d[position[i]].append((target-position[i])/speed[i])
         return d
-    
-
-x=Solution()
-d=x.carFleet(12,[10,8,0,5,3],[2,4,1,1,3])
-print(d)
