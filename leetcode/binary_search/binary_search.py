@@ -10,7 +10,7 @@ class Solution:
                 return mid
             elif nums[mid]>target:
                 return self.find(nums,target,mid-1,l)
-            return self.find(nums,target,r,mid+1)
-                
-            
+            return self.find(nums,target,r,mid+1)         
         return -1
+
+    
