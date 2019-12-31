@@ -14,4 +14,4 @@ class Solution:
                 return self.find(nums,mid+1,r)
             elif val>index:
                 return self.find(nums,l,mid-1)
-        return index
+        return None

@@ -2,12 +2,12 @@ def main(n,s,a,b):
     total=0
     current=1
     found=0
-    x=dict()
-    for i in range(n):
-        x[a[i]]=i
-
     for i in b:
-        index=x[i]+1-found
+        if current>=len(a):index=0
+        try:
+            index=a[current-1:].index(i)+1-found
+        except:
+            index=0
         if current-found>=index:
             total+=1
         else:
