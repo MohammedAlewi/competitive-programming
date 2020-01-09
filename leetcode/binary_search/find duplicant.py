@@ -1,11 +1,11 @@
 class Solution:
     def findDuplicate(self, nums) -> int:
-        return self.find(nums,0,len(nums))
+        return self.find(nums,0,len(nums)-1)
         
     def find(self,nums,l,r):
         if r>=l:
             mid=int((r+l)/2)
-            if len((nums[l:mid]))==len((set(nums[l:mid]))) and len((nums[mid:r]))==len((set(nums[mid:r]))):
+            if len((nums[l:mid]))>  len(set(nums[l:mid])):
                 if len(nums)<=1:return None
                 elif nums[0]==nums[len(nums)-1]:
                     return nums[0]

@@ -6,21 +6,26 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    def __init__(self):
-        self.values=[]
-        self.ans=0
-    def longestUnivaluePath(self, root):
-        self.get(root.left,root.val)
-        self.get(root.right,root.val)
-        return self.ans
+    def minDiffInBST(self, root: TreeNode) -> int:
+        values=[]
+        self.find_all(root,values)
+        values.sort()
+        
+        return self.find_min(values)
 
-    def get(self,tree,upper):
-        if tree==None: return
-        if tree.val-upper< self.ans and self.ans!=0:
-            self.ans= tree.val-upper
-        self.locate(tree.left,tree.val)
-        self.locate(tree.left,tree.val)
-
-    
-                    
-
+    def find_all(self,tree,values):
+        if tree!=None:
+            values.append(tree.val)
+            self.find_all(tree.left,values)
+            self.find_all(tree.right,values)
+        
+    def find_min(self,values):
+        x=None
+        for i in range(len(values)-1):
+            val=abs(values[i]-values[i+1])
+            if x==None:
+                x=val
+            elif x>val:
+                x=val
+        return x
+            
