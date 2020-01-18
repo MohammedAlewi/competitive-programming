@@ -14,14 +14,18 @@ class Solution:
         print(self.ans)
         return max_distance
 
-    def locate(self,tree,value):
+    def locate(self,tree,value,counter):
         if tree==None: return
         if tree.val==value:
-            self.ans[value]+=1
-        else:
-            self.ans[tree.val]=0
-        self.locate(tree.left,tree.val)
-        self.locate(tree.right,tree.val)
+            counter+=1
+        elif self.ans.get(tree.val)==None:
+                self.ans[tree.val]=counter
+                counter=0
+        elif self.ans.get(tree.val)<counter:
+                self.ans[tree.val=counter
+                counter=0
+        self.locate(tree.left,tree.val,counter)
+        self.locate(tree.right,tree.val,counter)
             
 
 

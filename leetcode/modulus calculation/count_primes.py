@@ -13,5 +13,9 @@ class Solution:
         numbers=0
         for p in range(n): 
             if prime[p]: 
+                print(p)
                 numbers+=1
         return numbers
+
+x=Solution()
+print(x.countPrimes(50))
