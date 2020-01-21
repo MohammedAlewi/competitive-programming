@@ -6,15 +6,13 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    def __init__(self):
-        self.left=[]
-        self.right=[]
     def constructMaximumBinaryTree(self, nums) -> TreeNode:
         if len(nums)==0: return None
         m=max(nums)
         index=nums.index(m)
         left=nums[:index]
         right=nums[index+1:]
+        
         tree=TreeNode(m)
         tree.left=self.constructMaximumBinaryTree(left)
         tree.right=self.constructMaximumBinaryTree(right)
