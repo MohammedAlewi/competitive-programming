@@ -4,9 +4,6 @@ class Solution:
     def countSubstrings(self, string: str) -> int:
         s,e=0,0
         count=0
-        # if len(string)%2==0:
-        #     print(string[2:]
-        #     #string=string[:len(string)/2]+" "+string[len(string)/2:]
         for i in range(len(string)):
             s,e=i,i
             while s>=0 and e<len(string):

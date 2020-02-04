@@ -5,35 +5,41 @@ class Solution:
 
     def findNthDigit(self, n):
         x=self.find_num(n)
-        # print(x,self.value[0])
         value=str(x)[self.value[0]]
         return value
 
-    def find_num(self,number,current=1,c=1):
-        if number<=9*current*c:
-            self.value[0]=(number+c-1)%c
-            return  math.ceil(number/c)
-        number-=9*current*c
-        return 9*current + self.find_num(number,current*10,c+1)
-# s=[0]
-# def find_num(number,current=1,c=1):
-#     if number<9*current*c:
-#         s[0]=(number+c-1)%c
-#         return  math.ceil(number/c)
-#     number-=9*current*c
-#     return 9*current + find_num(number,current*10,c+1)
+    def find_num(self,number,current=1,digit_size=1):
+        if number<=9*current*digit_size:
+            self.value[0]=(number+digit_size-1)%digit_size
+            return  math.ceil(number/digit_size)
+        number-=9*current*digit_size
+        return 9*current + self.find_num(number,current*10,digit_size+1)
+
 
 str_=""
 for i in range(100000):
     str_+=str(i)
 
+# print(str_[193])
+
 
 x=Solution()
-for i in range(len(str_)):
-    if str(str_[i])!=str(x.findNthDigit(i)):
-        print(str(str_[i]),str(x.findNthDigit(i)),i,len(str_))
-        break
-# print(str(str_[9]),str(x.findNthDigit(9)))
-# print(find_num(8975))
+print(x.findNthDigit(2147483647))
+# print(x.findNthDigit(193))
+
+
+
+
+
+
+
+
+
+
+# for i in range(len(str_)):
+#     if str(str_[i])!=str(x.findNthDigit(i)):
+#         print(str(str_[i]),str(x.findNthDigit(i)),i,len(str_))
+#         break
+# print("PASSED")
     
         
