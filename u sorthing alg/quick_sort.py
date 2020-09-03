@@ -7,7 +7,7 @@ def quick_sort_unstable(arr):
     pivot_point=arr[index]
     left_list=[]
     right_list=[]
-    for i in len(arr):
+    for i in range(len(arr)):
         if i==index:
             continue
         elif arr[index]>arr[i]:
@@ -25,12 +25,12 @@ def quick_sort_stable(arr):
 
 def quick_helper(arr,first,last):
     pivot= partition(arr,first,last)
-    while first <last:
+    while first+1 <last:
         quick_helper(arr,first,pivot-1)
         quick_helper(arr,pivot,last)
     
 
-def partition(arr,first,last):
+def partition(arr,first_pointer,last):
     first=arr[first_pointer]
     left_pointer=first+1
     right_pointer=last
@@ -38,9 +38,9 @@ def partition(arr,first,last):
     done= False
 
     while not done:
-        while left_pointer<right_pointer and arr[left_pointer]<=first:
+        while left_pointer<last and arr[left_pointer]<=first:
             left_pointer+=1
-        while right_pointer>right_pointer and arr[right_pointer]>=first:
+        while  right_pointer>first_pointer and arr[right_pointer]>=first:
             right_pointer-=1
         if left_pointer>right_pointer:
             done=True
@@ -50,5 +50,9 @@ def partition(arr,first,last):
     arr[first_pointer],arr[right_pointer]= arr[right_pointer],arr[first_pointer]
     return right_pointer
 
-print(quick_sort_stable([0,-9,-2,6,-3,7,1,-3,23,1,5,3]))
+print(quick_sort_stable([0,2,1,5,3]))
+
+
+
+
 

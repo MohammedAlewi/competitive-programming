@@ -1,25 +1,35 @@
-def merge_sort(arr):
-    if len(arr)<=1:
-        return arr
-    left=merge_sort(arr[:len(arr)//2])
-    right=merge_sort(arr[len(arr)//2:])
-    i,j=0,0
-    new=[]
-    while i<len(left) and j<len(right):
-        if left[i]<right[j]:
-            new.append(left[i])
-            i+=1
-        else:
-            new.append(right[j])
+def merge_sort(arr,start,end):
+    if start+1==end:
+        return start,end
+
+    left= merge_sort(arr,start,(start+end)//2)
+    right= merge_sort(arr,(start+end)//2,end)
+
+    i,j=left[0],right[0]
+    result=[]
+    while i<left[1] and j<right[1]:
+        if arr[j] < arr[i]:
+            result.append(arr[j])
             j+=1
-    while i<len(left):
-        new.append(left[i])
+        else:
+            result.append(arr[i])
+            i+=1
+
+    while i<left[1] :
+        result.append(arr[i])
         i+=1
 
-    while j<len(right):
-        new.append(right[j])
+    while j<right[1]:
+        result.append(arr[j])
         j+=1
-    return new
+    
+    index=0
+    for i in range(left[0],right[1]):
+        arr[i]=result[index]
+        index+=1
+    
+    return left[0],right[1]
 
-
-print(merge_sort([0,-9,-2,6,-3,7,1,-3,23,1,5,3]))
+l=[0,-9,-2,6,-3,7,1,-3,23,1,5,3,-22]
+merge_sort(l,0,len(l))
+print(l)
