@@ -21,3 +21,14 @@ class Solution:
             memory[start] = results
             return memory[start]
         return make_sentences(0)
+
+
+
+# Example-1
+# s = "catsanddog"
+# wordDict = ["cat", "cats", "and", "sand", "dog"]
+# Output:
+# [
+#   "cats and dog",
+#   "cat sand dog"
+# ]
